@@ -14,7 +14,7 @@ DATA_CONFIG:
           }
 
         - NAME: transform_points_to_voxels
-          VOXEL_SIZE: [0.16, 0.16, 4]
+          VOXEL_SIZE: [0.016, 0.016, 4]
           MAX_POINTS_PER_VOXEL: 32
           MAX_NUMBER_OF_VOXELS: {
             'train': 16000,
