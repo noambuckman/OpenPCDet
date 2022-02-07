@@ -82,7 +82,7 @@ class KittiDataset(DatasetTemplate):
 
     def get_image_shape(self, idx):
         img_file = self.root_split_path / 'image_2' / ('%s.png' % idx)
-        assert img_file.exists()
+        assert img_file.exists(), print("Missing %s"%img_file)
         return np.array(io.imread(img_file).shape[:2], dtype=np.int32)
 
     def get_label(self, idx):
@@ -171,6 +171,8 @@ class KittiDataset(DatasetTemplate):
 
             if has_label:
                 obj_list = self.get_label(sample_idx)
+                if len(obj_list) == 0:
+                    print(sample_idx)
                 annotations = {}
                 annotations['name'] = np.array([obj.cls_type for obj in obj_list])
                 annotations['truncated'] = np.array([obj.truncation for obj in obj_list])
