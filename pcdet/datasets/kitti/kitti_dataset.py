@@ -171,8 +171,6 @@ class KittiDataset(DatasetTemplate):
 
             if has_label:
                 obj_list = self.get_label(sample_idx)
-                if len(obj_list) == 0:
-                    print(sample_idx)
                 annotations = {}
                 annotations['name'] = np.array([obj.cls_type for obj in obj_list])
                 annotations['truncated'] = np.array([obj.truncation for obj in obj_list])
@@ -181,7 +179,7 @@ class KittiDataset(DatasetTemplate):
                 try:
                     annotations['bbox'] = np.concatenate([obj.box2d.reshape(1, 4) for obj in obj_list], axis=0)
                 except ValueError as e:
-                    print("sample idx", sample_idx)
+                    raise Exception("sample idx", sample_idx)
                 annotations['dimensions'] = np.array([[obj.l, obj.h, obj.w] for obj in obj_list])  # lhw(camera) format
                 annotations['location'] = np.concatenate([obj.loc.reshape(1, 3) for obj in obj_list], axis=0)
                 annotations['rotation_y'] = np.array([obj.ry for obj in obj_list])
