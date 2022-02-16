@@ -85,7 +85,7 @@ class KittiRCDataset(DatasetTemplate):
         image /= 255.0
         return image
 
-    def get_image_shape(self, idx, from_sensors=True):
+    def get_image_shape(self, idx, from_sensors=False):
         if from_sensors:
             assert self.left_camera_info_msg is not None
             return np.array([self.left_camera_info_msg.height, self.left_camera_info_msg.width], dtype=np.int32)
