@@ -403,7 +403,6 @@ class KittiRCDataset(DatasetTemplate):
         img_shape = info['image']['image_shape']
         calib = self.get_calib(sample_idx)
         get_item_list = self.dataset_cfg.get('GET_ITEM_LIST', ['points'])
-        get_item_list = ['points', 'calib_matricies'] #NB: override and only return points in get item list
         
         input_dict = {
             'frame_id': sample_idx,
